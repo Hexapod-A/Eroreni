@@ -1,0 +1,135 @@
+import Link from "next/link";
+import { BUDGETS, STAGES, STEP_LABELS } from "@/lib/config";
+import { IconArrow, IconCheck } from "./Icons";
+
+export function Hero() {
+  return (
+    <section className="relative overflow-hidden">
+      <div aria-hidden className="bg-grid pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)]" />
+      <div className="container-x relative pb-16 pt-14 text-center sm:pb-24 sm:pt-20">
+        <div data-reveal>
+          <Link
+            href="/start"
+            className="group inline-flex items-center gap-2 rounded-full border border-line-2 bg-card py-1.5 pl-1.5 pr-3.5 text-[13px] text-ink-2 transition-[border-color,transform,translate,scale] duration-200 hover:-translate-y-0.5 hover:border-ink"
+          >
+            <span className="rounded-full bg-lime px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-ink">Open</span>
+            We take ideas now. Share yours and your budget
+            <IconArrow className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+          </Link>
+        </div>
+        <h1 data-reveal className="mx-auto mt-7 max-w-5xl text-[44px] font-semibold leading-[1.02] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]">
+          <span className="block text-accent">You carry the dream.</span>
+          <span className="block">We carry the work.</span>
+        </h1>
+        <p data-reveal className="mx-auto mt-6 max-w-xl text-[17px] leading-relaxed text-ink-2 sm:text-lg">
+          Tell us your idea and what you can spend. We build the product, the pages, the posts and the sales plan with you,
+          until you can run it alone.
+        </p>
+        <div data-reveal className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Link href="/start" className="btn-primary btn-lg group w-full sm:w-auto">
+            Share your idea
+            <IconArrow className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+          </Link>
+          <Link href="/#how" className="btn-ghost btn-lg w-full sm:w-auto">
+            See how it works
+          </Link>
+        </div>
+        <ul data-reveal className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted">
+          {["You set the budget", "We talk on WhatsApp", "No tech skills needed"].map((t) => (
+            <li key={t} className="inline-flex items-center gap-1.5"><IconCheck className="h-4 w-4 text-accent" />{t}</li>
+          ))}
+        </ul>
+
+        {/* Preview: a calm drawing of the idea flow, not a form. Step one is shown as it is typed. */}
+        <div data-reveal className="relative mx-auto mt-14 max-w-5xl sm:mt-20">
+          <div aria-hidden className="absolute -inset-x-10 -bottom-10 top-10 rounded-[40px] bg-lime/25 blur-3xl" />
+          <div className="relative overflow-hidden rounded-2xl border border-ink/90 bg-ink text-left shadow-[0_40px_80px_-40px_rgba(14,15,12,0.6)]">
+            <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
+              <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
+              <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
+              <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
+              <span className="mx-auto rounded-md bg-white/5 px-3 py-1 font-mono text-[11px] text-white/50">eroreni / start / your-idea</span>
+            </div>
+            <div className="grid md:grid-cols-[200px_1fr]">
+              <aside className="hidden border-r border-white/10 p-4 md:block">
+                <p className="px-2 font-mono text-[10px] uppercase tracking-[0.14em] text-white/35">Steps</p>
+                <ul className="mt-2 space-y-0.5 text-[13px]">
+                  {STEP_LABELS.map((l, i) => (
+                    <li key={l} className={`flex items-center gap-2 rounded-md px-2 py-1.5 ${i === 0 ? "bg-white/10 text-white" : "text-white/55"}`}>
+                      <span className="font-mono text-[10px] text-white/35">0{i + 1}</span>
+                      {l}
+                    </li>
+                  ))}
+                </ul>
+              </aside>
+              <div className="grid gap-4 p-4 sm:p-6 lg:grid-cols-[1.2fr_1fr]">
+                <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4 sm:p-5">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/40">1 · Your idea</p>
+                  <div className="mt-3 min-h-[88px] rounded-lg border border-lime/60 bg-black/30 px-3 py-2.5 text-[14px] leading-relaxed text-white/85">
+                    I want to sell zobo drinks to offices, but I do not know where to start
+                    <span aria-hidden className="caret ml-0.5 inline-block h-[15px] w-[2px] translate-y-[3px] bg-lime" />
+                  </div>
+                  <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.14em] text-white/40">2 · Where are you now?</p>
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {STAGES.slice(0, 4).map((s, i) => (
+                      <span key={s.id} className={`inline-flex items-center rounded-md border px-2 py-1 text-xs ${i === 0 ? "border-lime/70 bg-lime/10 text-white" : "border-white/10 text-white/60"}`}>
+                        {s.title}
+                      </span>
+                    ))}
+                    <span className="rounded-md border border-white/10 px-2 py-1 text-xs text-white/40">+2 more</span>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-4">
+                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4 sm:p-5">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/40">5 · Your budget</p>
+                    <div className="mt-3 flex flex-wrap gap-1.5">
+                      {BUDGETS.slice(0, 5).map((b, i) => (
+                        <span key={b.id} className={`rounded-md border px-2 py-1 font-mono text-xs ${i === 2 ? "border-lime/70 bg-lime/10 text-white" : "border-white/10 text-white/55"}`}>
+                          {b.short}
+                        </span>
+                      ))}
+                    </div>
+                    <p className="mt-3 text-xs text-white/50">We shape the work to fit it.</p>
+                  </div>
+                  <div className="flex-1 rounded-xl border border-white/10 bg-white/[0.03] p-4 sm:p-5">
+                    <div className="flex items-center justify-between">
+                      <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/40">Your recap</p>
+                      <span className="inline-flex items-center gap-1.5 text-[11px] text-lime"><span className="pulse-dot h-1.5 w-1.5 rounded-full bg-lime" />Ready</span>
+                    </div>
+                    <p className="mt-3 break-words rounded-lg bg-black/40 px-3 py-2.5 font-mono text-[12px] text-white/80">idea · stage · help · budget</p>
+                    <span className="mt-3 inline-flex rounded-lg bg-lime px-3 py-2 text-xs font-semibold text-ink">Send to Èrò rẹ ni</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function FactStrip() {
+  const facts = [
+    { k: "6", v: "Areas we build with you" },
+    { k: "You", v: "Set the budget" },
+    { k: "WhatsApp", v: "Where we talk and agree" },
+    { k: "0", v: "Tech skills needed" },
+  ];
+  return (
+    <section className="border-y border-line bg-card">
+      <div data-reveal-stagger className="container-x grid grid-cols-2 lg:grid-cols-4">
+        {facts.map((f, i) => (
+          <div
+            key={f.v}
+            data-reveal
+            className={`px-2 py-7 text-center sm:py-9 ${i % 2 === 1 ? "border-l border-line" : ""} ${i >= 2 ? "border-t border-line lg:border-t-0" : ""} ${i === 2 ? "lg:border-l" : ""}`}
+          >
+            <p className="text-[28px] font-semibold tracking-[-0.03em] sm:text-4xl">{f.k}</p>
+            <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-muted">{f.v}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
